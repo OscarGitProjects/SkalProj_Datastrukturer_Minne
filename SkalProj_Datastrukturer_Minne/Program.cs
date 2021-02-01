@@ -62,6 +62,8 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineList()
         {
+            Console.WriteLine("ExamineList");
+
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch statement with cases '+' and '-'
@@ -85,6 +87,8 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineQueue()
         {
+            Console.WriteLine("ExamineQueue");
+
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
@@ -97,6 +101,8 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineStack()
         {
+            Console.WriteLine("ExamineStack");
+
             /*
              * Loop this method until the user inputs something to exit to main menue.
              * Create a switch with cases to push or pop items
@@ -106,6 +112,8 @@ namespace SkalProj_Datastrukturer_Minne
 
         static void CheckParanthesis()
         {
+            Console.WriteLine("CheckParanthesis");
+
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
