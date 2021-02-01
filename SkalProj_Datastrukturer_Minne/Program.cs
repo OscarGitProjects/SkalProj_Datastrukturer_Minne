@@ -1,7 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SkalProj_Datastrukturer_Minne
 {
+    /// <summary>
+    /// TOD SVARA PÅ FRÅGORNA
+    /// 
+    /// 1. Hur fungerar stacken och heapen ? Förklara gärna med exempel eller skiss på dess grundläggande funktion
+    /// 2. Vad är Value Types repsektive Reference Types och vad skiljer dem åt?
+    /// 3. Följande metoder(se bild nedan ) genererar olika svar.Den första returnerar 3, den andra returnerar 4, varför?
+    /// TODO SE BILD, sid 3, I LABB PDF
+    /// 
+    /// </summary>
     class Program
     {
         /// <summary>
@@ -59,6 +69,23 @@ namespace SkalProj_Datastrukturer_Minne
 
         /// <summary>
         /// Examines the datastructure List
+        /// 
+        /// Svar på frågor
+        /// När ökar listans kapacitet? (Alltså den underliggande arrayens storlek) 
+        ///     Listans kapacitet ökas när man når nuvarande kapacitet
+        ///     
+        /// Med hur mycket ökar kapaciteten? 
+        /// Storleken på listan dubblas
+        /// 
+        /// Varför ökar inte listans kapacitet i samma takt som element läggs till? 
+        ///     Det skulle leda till att listan måste allokeras om för varje element som läggs till. Ger dålig prestanda
+        ///     
+        /// Minskar kapaciteten när element tas bort ur listan? 
+        ///     Nej
+        ///     
+        /// När är det då fördelaktigt att använda en egendefinierad array istället för en lista? 
+        ///     Om man vet hur många elemet som skall lagras i arrayen och att man inte ändrar antalet element i arrayen
+        ///     
         /// </summary>
         static void ExamineList()
         {
@@ -80,7 +107,95 @@ namespace SkalProj_Datastrukturer_Minne
             //string value = input.substring(1);
 
             //switch(nav){...}
+
+            // Lista med inmatningar från användaren
+            List<string> lsInput = new List<string>();
+            bool bRun = true;
+            string strInput = String.Empty;
+            do
+            {   
+                // Rensa
+                strInput = String.Empty;                
+                Console.Clear();
+
+                // Visa menyn
+                Console.WriteLine(MenuFactory.GetMenu(MenuType.EXAMINELIST));
+
+                strInput = Console.ReadLine();
+
+                if(!String.IsNullOrWhiteSpace(strInput))
+                {
+                    strInput = strInput.Trim();
+
+                    if(strInput.StartsWith('+') && strInput.Length > 1)
+                    {// Användaren vill lägga till en text
+
+                        Console.WriteLine(System.Environment.NewLine);
+
+                        // Hämta inmatningen från tecken 1
+                        strInput = strInput.Substring(1);
+                        strInput = strInput?.Trim();
+                        if (strInput?.Length > 0)
+                        {// Lägg till texten till listan
+                            lsInput.Add(strInput);
+                        }
+
+                        PrintToConsole(lsInput);
+                        Console.ReadLine();
+                    }
+                    else if(strInput.StartsWith('-') && strInput.Length > 1)
+                    {// Användaren vill radera en text
+
+                        Console.WriteLine(System.Environment.NewLine);
+
+                        // Hämta inmatningen från tecken 1
+                        strInput = strInput.Substring(1);
+                        strInput = strInput?.Trim();
+                        if (strInput?.Length > 0)
+                        {// Radera texten från listan
+                            lsInput.Remove(strInput);
+                        }
+
+                        PrintToConsole(lsInput);
+                        Console.ReadLine();
+                    }
+                    else if(strInput.StartsWith('0'))
+                    {// Användaren vill avsluta och återgå till huvudmenyn
+
+                        Console.ReadLine();
+                        bRun = false;
+                    }
+                    else if (strInput.StartsWith('1'))
+                    {// Användaren vill att innehållet i listan visas
+
+                        PrintToConsole(lsInput);
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Använd + för att lägga till text, - för att radera text och 0 för att återgå till huvudmenyn");
+                        Console.ReadLine();
+                    }
+                }
+
+            }while (bRun);
         }
+
+
+        /// <summary>
+        /// Metoden skriver ut information om listan och innehållet i listan till console
+        /// </summary>
+        /// <param name="lsList"></param>
+        private static void PrintToConsole(List<string> lsList)
+        {
+            Console.WriteLine($"PrintToConsole. {lsList.Count} ({lsList.Capacity})." + System.Environment.NewLine);
+
+            foreach (string str in lsList)
+            {
+                Console.WriteLine(str);
+            }
+        }
+
 
         /// <summary>
         /// Examines the datastructure Queue
