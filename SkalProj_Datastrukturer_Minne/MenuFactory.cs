@@ -7,7 +7,8 @@ namespace SkalProj_Datastrukturer_Minne
     {
         NA = 0,
         EXAMINELIST = 1,
-        EXAMINEQUEUE = 2
+        EXAMINEQUEUE = 2,
+        EXAMINESTACK = 3
     }
 
 
@@ -46,6 +47,12 @@ namespace SkalProj_Datastrukturer_Minne
                     strBuilder.Append("Skriv 2 för att tabort en person från kön");
                     strBuilder.Append(System.Environment.NewLine);
                     strBuilder.Append("Skriv 3 för att visa en simulerad kö");
+                    strMenu = strBuilder.ToString();
+                    break;
+                case MenuType.EXAMINESTACK:
+                    strBuilder.Append("Skriv in en text");
+                    strBuilder.Append(System.Environment.NewLine);
+                    strBuilder.Append("Skriv 0 för att återgå till huvudmenyn");
                     strMenu = strBuilder.ToString();
                     break;
             }
