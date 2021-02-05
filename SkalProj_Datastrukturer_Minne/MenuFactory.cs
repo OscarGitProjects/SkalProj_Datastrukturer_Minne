@@ -8,12 +8,13 @@ namespace SkalProj_Datastrukturer_Minne
         NA = 0,
         EXAMINELIST = 1,
         EXAMINEQUEUE = 2,
-        EXAMINESTACK = 3
+        EXAMINESTACK = 3,
+        CHECKPARANTHESIS = 4
     }
 
 
     /// <summary>
-    /// Factory klass som skapar texten till en meny
+    /// Factoryklass som skapar texten till en meny
     /// Vilken meny som skall skapas bestäms av enum MenuType
     /// </summary>
     public class MenuFactory
@@ -36,15 +37,13 @@ namespace SkalProj_Datastrukturer_Minne
                     strMenu = strBuilder.ToString();
                     break;
                 case MenuType.EXAMINEQUEUE:
-                    strBuilder.Append("Skriv + framför ert namn för att ställa er i kön");
+                    strBuilder.Append("Skriv + framför ert namn för att ställa er i kö");
                     strBuilder.Append(System.Environment.NewLine);
-                    //strBuilder.Append("Skriv - framför ert namn för att lämna kön");
-                    //strBuilder.Append(System.Environment.NewLine);
                     strBuilder.Append("Skriv 0 för att återgå till huvudmenyn");
                     strBuilder.Append(System.Environment.NewLine);
-                    strBuilder.Append("Skriv 1 för att visa kön");
+                    strBuilder.Append("Skriv 1 för att visa kö");
                     strBuilder.Append(System.Environment.NewLine);
-                    strBuilder.Append("Skriv 2 för att tabort en person från kön");
+                    strBuilder.Append("Skriv 2 för att tabort en person från kö");
                     strBuilder.Append(System.Environment.NewLine);
                     strBuilder.Append("Skriv 3 för att visa en simulerad kö");
                     strMenu = strBuilder.ToString();
@@ -53,6 +52,14 @@ namespace SkalProj_Datastrukturer_Minne
                     strBuilder.Append("Skriv in en text");
                     strBuilder.Append(System.Environment.NewLine);
                     strBuilder.Append("Skriv 0 för att återgå till huvudmenyn");
+                    strMenu = strBuilder.ToString();
+                    break;
+                case MenuType.CHECKPARANTHESIS:
+                    strBuilder.Append("Skriv in en text ({[ där varje öppnad parantes även skall stängas ]}). Programmet kommer att validera att texten är korrekt");
+                    strBuilder.Append(System.Environment.NewLine);
+                    strBuilder.Append("Skriv 0 för att återgå till huvudmenyn");
+                    strBuilder.Append(System.Environment.NewLine);
+                    strBuilder.Append("Skriv 1 för att köre lite olika testdata");
                     strMenu = strBuilder.ToString();
                     break;
             }

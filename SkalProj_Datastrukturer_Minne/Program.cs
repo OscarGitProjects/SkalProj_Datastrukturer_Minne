@@ -54,7 +54,7 @@ namespace SkalProj_Datastrukturer_Minne
     /// 
     /// 
     /// Svar på frågor om Stack
-    ///     Simulera ännu en gång ICA-kön på papper. Denna gång med en stack . Varför är det inte så smart att använda en stack i det här fallet?
+    ///     Simulera ännu en gång ICA-kö på papper. Denna gång med en stack . Varför är det inte så smart att använda en stack i det här fallet?
     ///         En stack är en så kallad LIFO samling av data. Det innebär att det som adderades sist är det som hämtas först. 
     ///         Vilket är tvärt om en kö som är en så kallad FIFO samling av data. Där den som adderades först hämtas först. Det är ju så här en vanlig kö i ICA butiken fungerar
     /// 
@@ -70,6 +70,8 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
+                Console.Clear();
+
                 Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
@@ -117,6 +119,8 @@ namespace SkalProj_Datastrukturer_Minne
         #region ExamineList
 
         /// <summary>
+        /// Övning 1: ExamineList()
+        /// 
         /// Examines the datastructure List
         /// 
         /// Svar på frågor
@@ -157,92 +161,8 @@ namespace SkalProj_Datastrukturer_Minne
 
             //switch(nav){...}
 
-            // Lista med inmatningar från användaren
-            List<string> lsInput = new List<string>();
-            bool bRun = true;
-            string strInput = String.Empty;
-            do
-            {   
-                // Rensa
-                strInput = String.Empty;                
-                Console.Clear();
-
-                // Visa menyn
-                Console.WriteLine(MenuFactory.GetMenu(MenuType.EXAMINELIST));
-
-                strInput = Console.ReadLine();
-
-                if(!String.IsNullOrWhiteSpace(strInput))
-                {
-                    strInput = strInput.Trim();
-
-                    if(strInput.StartsWith('+') && strInput.Length > 1)
-                    {// Användaren vill lägga till en text
-
-                        Console.WriteLine(System.Environment.NewLine);
-
-                        // Hämta inmatningen från tecken 1
-                        strInput = strInput.Substring(1);
-                        strInput = strInput?.Trim();
-                        if (strInput?.Length > 0)
-                        {// Lägg till texten till listan
-                            lsInput.Add(strInput);
-                        }
-
-                        PrintListToConsole(lsInput);
-                        Console.ReadLine();
-                    }
-                    else if(strInput.StartsWith('-') && strInput.Length > 1)
-                    {// Användaren vill radera en text
-
-                        Console.WriteLine(System.Environment.NewLine);
-
-                        // Hämta inmatningen från tecken 1
-                        strInput = strInput.Substring(1);
-                        strInput = strInput?.Trim();
-                        if (strInput?.Length > 0)
-                        {// Radera texten från listan
-                            lsInput.Remove(strInput);
-                        }
-
-                        PrintListToConsole(lsInput);
-                        Console.ReadLine();
-                    }
-                    else if(strInput.StartsWith('0'))
-                    {// Användaren vill avsluta och återgå till huvudmenyn
-
-                        Console.ReadLine();
-                        bRun = false;
-                    }
-                    else if (strInput.StartsWith('1'))
-                    {// Användaren vill att innehållet i listan visas
-
-                        PrintListToConsole(lsInput);
-                        Console.ReadLine();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Använd + för att lägga till text, - för att radera text, 0 för att återgå till huvudmenyn och 1 för att visa listan");
-                        Console.ReadLine();
-                    }
-                }
-
-            }while (bRun);
-        }
-
-
-        /// <summary>
-        /// Metoden skriver ut information om listan och innehållet i listan till console
-        /// </summary>
-        /// <param name="lsList"></param>
-        private static void PrintListToConsole(List<string> lsList)
-        {
-            Console.WriteLine($"PrintToConsole. {lsList.Count} ({lsList.Capacity})." + System.Environment.NewLine);
-
-            foreach (string str in lsList)
-            {
-                Console.WriteLine(str);
-            }
+            ExamineList examineList = new ExamineList();
+            examineList.RunExamineList();
         }
 
         #endregion  // End of region ExamineList
@@ -251,6 +171,8 @@ namespace SkalProj_Datastrukturer_Minne
         #region ExamineQueue
 
         /// <summary>
+        /// Övning 2: ExamineQueue()
+        /// 
         /// Examines the datastructure Queue
         /// </summary>
         static void ExamineQueue()
@@ -263,151 +185,8 @@ namespace SkalProj_Datastrukturer_Minne
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
 
-            // Queue med inmatningar från användaren
-            Queue<string> queue = new Queue<string>();
-            bool bRun = true;
-            string strInput = String.Empty;
-
-            do
-            {
-                // Rensa
-                strInput = String.Empty;
-                Console.Clear();
-
-                // Visa menyn
-                Console.WriteLine(MenuFactory.GetMenu(MenuType.EXAMINEQUEUE));
-
-                strInput = Console.ReadLine();
-
-                if (!String.IsNullOrWhiteSpace(strInput))
-                {
-                    strInput = strInput.Trim();
-
-                    if (strInput.StartsWith('+') && strInput.Length > 1)
-                    {// Användaren vill lägga till en person i kön
-
-                        Console.WriteLine(System.Environment.NewLine);
-
-                        // Hämta inmatningen från tecken 1
-                        strInput = strInput.Substring(1);
-                        strInput = strInput?.Trim();
-                        if (strInput?.Length > 0)
-                        {// Lägg till namnet på personen till kön
-                            queue.Enqueue(strInput);
-                        }
-
-                        PrintQueueToConsole(queue);
-                        Console.ReadLine();
-                    }
-                    else if (strInput.StartsWith('0'))
-                    {// Användaren vill avsluta och återgå till huvudmenyn
-
-                        //Console.ReadLine();
-                        bRun = false;
-                    }
-                    else if (strInput.StartsWith('1'))
-                    {// Användaren vill att innehållet i kön visas
-
-                        PrintQueueToConsole(queue);
-                        Console.ReadLine();
-                    }
-                    else if (strInput.StartsWith('2'))
-                    {// Användaren vill att en person lämnar kön
-
-                        queue.Dequeue();
-                        PrintQueueToConsole(queue);
-                        Console.ReadLine();
-                    }
-                    else if (strInput.StartsWith('3'))
-                    {// Simulera en kö
-
-                        SimuleraEnKo();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Använd + för att lägga till person, 0 för att återgå till huvudmenyn, 1 för att visa kön, 2 för att en person skall lämna kön och 3 för att simulera en kö");
-                        Console.ReadLine();
-                    }
-                }
-
-            } while (bRun);
-        }
-
-
-        /// <summary>
-        /// Metoden simulerar att folk ställer sig i en kö och lämnar kön
-        /// </summary>
-        private static void SimuleraEnKo()
-        {
-            int iRandomValue = 0;
-            string strName = String.Empty;
-            string strRemovedName = String.Empty;
-            Random random = new Random();
-            Queue<string> queue = new Queue<string>();
-
-            Console.WriteLine("Nu simuleras en kö. Vänta tills det är klart");
-            Console.WriteLine("ICA öppnar och kön till kassan är tom");
-
-            for (int i = 0; i < 10; i++)
-            {
-                iRandomValue = random.Next(0, 3);
-
-                switch(iRandomValue)
-                {
-                    case 0: // Inget händer med kön
-                        break;
-                    case 1: // En person ställer sig i kö
-                        strName = Helper.GetRandomName();
-                        Console.WriteLine($"{strName} ställer sig i kö");
-                        queue.Enqueue(strName);
-                        PrintQueueToConsole(queue);
-                        Console.WriteLine(System.Environment.NewLine);
-                        break;
-                    case 2: // En person lämnar kön
-                        try
-                        {
-                            strRemovedName = queue.Dequeue();
-                            Console.WriteLine($"{strRemovedName} lämnar kön");
-                            PrintQueueToConsole(queue);
-                            Console.WriteLine(System.Environment.NewLine);
-                        }
-                        catch(Exception)
-                        {// Undantag kan kastas om queue är tom
-                            //Console.WriteLine("Exception");
-                        }
-
-                        break;
-                    default:
-                        break;
-
-                }                         
-            }            
-
-            //Console.WriteLine(System.Environment.NewLine);
-            Console.WriteLine("Avsluta simuleringen med att trycka på return");
-            Console.ReadLine();
-        }
-
-
-        /// <summary>
-        /// Metoden skriver ut information om kön till console
-        /// </summary>
-        /// <param name="queeue">Kö med personer som vi skall skriva ut information om</param>
-        private static void PrintQueueToConsole(Queue<string> queeue)
-        {
-            StringBuilder strBuilder = new StringBuilder($"Följande personer står i kö ({queeue.Count}). ");
-
-            int iCount = 0;
-            foreach (string str in queeue)
-            {
-                if(iCount > 0)
-                    strBuilder.Append(", ");
-
-                strBuilder.Append(str);
-                iCount++;
-            }
-
-            Console.WriteLine(strBuilder.ToString());
+            ExamineQueue examinQueue = new ExamineQueue();
+            examinQueue.RunExamineQueue();
         }
 
         #endregion  // End of region ExamineQueue
@@ -416,9 +195,11 @@ namespace SkalProj_Datastrukturer_Minne
         #region ExamineStack
 
         /// <summary>
+        /// Övning 3: ExamineStack()
+        /// 
         /// Examines the datastructure Stack
         /// 
-        /// Simulera ännu en gång ICA-kön på papper. Denna gång med en stack . Varför är det inte så smart att använda en stack i det här fallet?
+        /// Simulera ännu en gång ICA-kö på papper. Denna gång med en stack . Varför är det inte så smart att använda en stack i det här fallet?
         ///     En stack är en så kallad LIFO samling av data. Det innebär att det som adderades sist är det som hämtas först. 
         ///     Vilket är tvärt imot en kö som är en så kalald FIFO samling av data. Där den som adderades först hämtas först
         ///
@@ -432,74 +213,20 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
-            // Stack med inmatning från användaren
-            Stack<string> stacken = new Stack<string>();
-            bool bRun = true;
-            string strInput = String.Empty;
 
-            do
-            {
-                // Rensa
-                strInput = String.Empty;
-                Console.Clear();
-
-                // Visa menyn
-                Console.WriteLine(MenuFactory.GetMenu(MenuType.EXAMINESTACK));
-
-                strInput = Console.ReadLine();
-
-                if (!String.IsNullOrWhiteSpace(strInput))
-                {
-                    strInput = strInput.Trim();
-
-                    if (strInput.StartsWith('0'))
-                    {// Användaren vill avsluta och återgå till huvudmenyn
-
-                        //Console.ReadLine();
-                        bRun = false;
-                    }
-                    else
-                    {
-                        // Spara varje tecken från input i en stack
-                        foreach(char ch in strInput)
-                        {
-                            stacken.Push(ch.ToString());
-                        }
-
-                        PrintStackToConsole(stacken);
-                        Console.ReadLine();
-                    }
-                }
-
-            } while (bRun);
-        }
-
-
-        /// <summary>
-        /// Metoden skriver ut inofrmation om stacken till consolen
-        /// </summary>
-        /// <param name="stacken">Stack med information som  skall skrivas ut</param>
-        private static void PrintStackToConsole(Stack<string> stacken)
-        {
-            StringBuilder strBuilder = new StringBuilder($"Följande tecken finns i stacken ({stacken.Count}). ");
-
-            int iCount = 0;
-
-            foreach(string str in stacken)
-            {
-                if (iCount > 0)
-                    strBuilder.Append(", ");
-
-                strBuilder.Append(str);
-                iCount++;
-            }
-
-            Console.WriteLine(strBuilder.ToString());
+            ExamineStack examineStack = new ExamineStack();
+            examineStack.RunExamineStack();
         }
 
         #endregion  // End of region ExamineStack
 
 
+        #region CheckParanthesis
+
+        /// <summary>
+        /// Övning 4: CheckParanthesis()
+        /// 
+        /// </summary>
         static void CheckParanthesis()
         {
             Console.WriteLine("CheckParanthesis");
@@ -510,8 +237,11 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
+            CheckParanthesis checkParanthesis = new CheckParanthesis();
+            checkParanthesis.RunCheckParanthesis();
         }
 
+        #endregion  // End of region CheckParanthesis
     }
 }
 
