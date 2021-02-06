@@ -3,7 +3,7 @@
 namespace SkalProj_Datastrukturer_Minne
 {
     /// <summary>
-    /// Exctension metoder för Stack klassen
+    /// Extension metoder för Stack klassen
     /// </summary>
     public static class StackExtension
     {
