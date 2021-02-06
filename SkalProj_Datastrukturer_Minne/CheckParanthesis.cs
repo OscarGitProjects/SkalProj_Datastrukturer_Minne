@@ -190,7 +190,7 @@ namespace SkalProj_Datastrukturer_Minne
                         case ')':   // Vi har slutet på en parantes. Hämta senaste start parantes från stacken och kontrollera att dom matchar varandra
 
                             // Om vi har en avslutande parantes men inte en tidigare sparad startande parantes är texten ogiltig
-                            if (stackTokens.Count == 0)
+                            if(stackTokens.IsEmpty())
                                 return false;
 
                             bMatchingToken = IsMatchingToken(stackTokens.Peek().TokenChar, chToken);
@@ -201,7 +201,7 @@ namespace SkalProj_Datastrukturer_Minne
                         case '}':   // Vi har slutet på en parantes. Hämta senaste start parantes från stacken och kontrollera att dom matchar varandra
 
                             // Om vi har en avslutande parantes men inte en tidigare sparad startande parantes är texten ogiltig
-                            if (stackTokens.Count == 0)
+                            if (stackTokens.IsEmpty())
                                 return false;
 
                             bMatchingToken = IsMatchingToken(stackTokens.Peek().TokenChar, chToken);
@@ -212,7 +212,7 @@ namespace SkalProj_Datastrukturer_Minne
                         case ']':   // Vi har slutet på en parantes. Hämta senaste start parantes från stacken och kontrollera att dom matchar varandra
 
                             // Om vi har en avslutande parantes men inte en tidigare sparad startande parantes är texten ogiltig
-                            if (stackTokens.Count == 0)
+                            if (stackTokens.IsEmpty())
                                 return false;
 
                             bMatchingToken = IsMatchingToken(stackTokens.Peek().TokenChar, chToken);
