@@ -1,0 +1,23 @@
+                    + "\n5. Rekursion"                   
+
+
+ case '5':
+                        Rekursion();
+                        break;
+
+
+
+        #region Rekursion
+
+        /// <summary>
+        /// Övning 5: Rekursion
+        /// </summary>
+        private static void Rekursion()
+        {
+            Console.WriteLine("Rekursion");
+
+            Rekursion rekursion = new Rekursion();
+            rekursion.RunRekursion();
+        }
+
+        #endregion  // End of region Rekursion

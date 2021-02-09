@@ -172,47 +172,19 @@ namespace SkalProj_Datastrukturer_Minne
 
                     switch (chToken)
                     {
+                        case '[':
+                        case '{':
                         case '(':   // Vi har start parantes. Spara undan i en stack
-                            newToken = new Token('(');
+                            newToken = new Token(chToken);
                             newToken.TokenCharIndex = i;
                             stackTokens.Push(newToken);
                             break;
-                        case '{':   // Vi har start parantes. Spara undan i en stack
-                            newToken = new Token('{');
-                            newToken.TokenCharIndex = i;
-                            stackTokens.Push(newToken);
-                            break;
-                        case '[':   // Vi har start parantes. Spara undan i en stack
-                            newToken = new Token('[');
-                            newToken.TokenCharIndex = i;
-                            stackTokens.Push(newToken);
-                            break;
+                        case ']':
+                        case '}':
                         case ')':   // Vi har slutet på en parantes. Hämta senaste start parantes från stacken och kontrollera att dom matchar varandra
 
                             // Om vi har en avslutande parantes men inte en tidigare sparad startande parantes är texten ogiltig
                             if(stackTokens.IsEmpty())
-                                return false;
-
-                            bMatchingToken = IsMatchingToken(stackTokens.Peek().TokenChar, chToken);
-
-                            if (bMatchingToken)
-                                stackTokens.Pop();
-                            break;
-                        case '}':   // Vi har slutet på en parantes. Hämta senaste start parantes från stacken och kontrollera att dom matchar varandra
-
-                            // Om vi har en avslutande parantes men inte en tidigare sparad startande parantes är texten ogiltig
-                            if (stackTokens.IsEmpty())
-                                return false;
-
-                            bMatchingToken = IsMatchingToken(stackTokens.Peek().TokenChar, chToken);
-
-                            if (bMatchingToken)
-                                stackTokens.Pop();
-                            break;
-                        case ']':   // Vi har slutet på en parantes. Hämta senaste start parantes från stacken och kontrollera att dom matchar varandra
-
-                            // Om vi har en avslutande parantes men inte en tidigare sparad startande parantes är texten ogiltig
-                            if (stackTokens.IsEmpty())
                                 return false;
 
                             bMatchingToken = IsMatchingToken(stackTokens.Peek().TokenChar, chToken);
